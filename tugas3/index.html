@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Animasi Huruf Dalam Kubus</title>
+    <meta http-equiv="content-type" content="text/html" charset="ISO-8859-1">
+
+    <script type="text/javascript" src="gl-matrix-min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+    <script id="shader-fs" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 vColor;
+      void main(void) {
+        gl_FragColor = vColor;
+      }
+    </script>
+
+    <style>
+      .font{
+        color: white;
+        font-size: 20px;
+        font-family: "Arial", Times, serif;
+  
+      }
+    </style>
+    
+    <script id="shader-vs" type="x-shader/x-vertex">
+      attribute vec3 aVertexPosition;
+      attribute vec4 aVertexColor;
+      uniform mat4 uMVMatrix;
+      uniform mat4 uPMatrix;
+      varying vec4 vColor;
+      void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+      }
+    </script>
+  </head>
+  <body onload="webGLStart();" style="background-color: black;">
+    <div class="font" align="center" style="color: white; font-size: 24px;">
+      <h3>Hilmi Raditya Prakoso</h3>
+      <h5>05111640000164</h5>
+    </div>
+    <div align="center">
+      <canvas id="mycanvas" style="border: none" width="600" height="500"></canvas>
+    </div>
+    <!-- <h2>Interaksi</h2> -->
+    <div align="center">
+      <ul class="font">
+      <p>W : Kamera Menjauh</p>
+      <p>S : Kamera Mendekat</p>
+      <p>Panah Atas : Rotasi ke Atas</p>
+      <p>Panah Bawah : Rotasi ke Bawah</p>
+      <p>Panah Kiri : Rotasi ke Kiri</p>
+      <p>Panah Kanan : Rotasi ke Kanan</p>
+      <p>Mouse (Click & Drag) : Ubah Orientasi</p>
+    </ul>
+  </div>
+</body>
+</html>
